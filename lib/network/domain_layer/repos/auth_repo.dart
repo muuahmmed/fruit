@@ -84,6 +84,30 @@ class AuthRepoImpl implements AuthRepo {
       throw AuthException('Google Sign-In error: ${e.toString()}');
     }
   }
+
+  @override
+  Future<UserEntity> signInWithFacebook() async {
+    try {
+      final user = await firebaseAuthService.signInWithFacebook();
+      if (user == null) {
+        throw AuthException('Facebook Sign-In failed - no user returned');
+      }
+      return UserModel.fromFirebaseUser(user);
+    } on FirebaseAuthException catch (e) {
+      throw AuthException(e.message ?? 'Facebook Sign-In failed');
+    } catch (e) {
+      throw AuthException('Facebook Sign-In error: ${e.toString()}');
+    }
+  }
+  // In your AuthRepoImpl
+  @override
+  Future<void> sendPasswordResetEmail({required String email}) async {
+    try {
+      await firebaseAuthService.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      throw AuthException(e.message ?? 'Password reset failed');
+    }
+  }
 }
 
 abstract class AuthRepo {
@@ -99,4 +123,6 @@ abstract class AuthRepo {
     required String password,
   });
   Future<UserEntity> signInWithGoogle();
+  Future<UserEntity> signInWithFacebook();
+  Future<void> sendPasswordResetEmail({required String email});
 }

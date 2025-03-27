@@ -18,3 +18,5 @@ class ShopLoginErrorState extends ShopLoginStates {
   final String error;
   ShopLoginErrorState(this.error);
 }
+
+class ShopForgotPasswordSuccessState extends ShopLoginStates {}

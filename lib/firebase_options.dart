@@ -52,7 +52,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyD61zcFJNdxwfCUpQEg1Ypet4_N98ArbWQ',
-    appId: '1:460469860911:android:12715471027b5f8b14e4da',
+    appId: '1:460469860911:android:f56f72ea6421931814e4da',
     messagingSenderId: '460469860911',
     projectId: 'fruit-hub-47864',
     storageBucket: 'fruit-hub-47864.firebasestorage.app',
@@ -60,11 +60,13 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBUBby3Zyxb-7kM6M-Ia2_v1FUL1wYjIIY',
-    appId: '1:460469860911:ios:4ecfa34abfc2af5214e4da',
+    appId: '1:460469860911:ios:1361d7e917aec80414e4da',
     messagingSenderId: '460469860911',
     projectId: 'fruit-hub-47864',
     storageBucket: 'fruit-hub-47864.firebasestorage.app',
-    iosBundleId: 'com.example.untitled4',
+    androidClientId: '460469860911-e0gpdcrkjae6occju3r42fe8kdjptl0t.apps.googleusercontent.com',
+    iosClientId: '460469860911-rra3vec4a2n0un9ae4i9f762o7lo0gii.apps.googleusercontent.com',
+    iosBundleId: 'com.example.fruit',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(

@@ -43,15 +43,4 @@ class ShopLoginCubit extends Cubit<ShopLoginStates> {
       emit(ShopLoginErrorState(e.toString()));
     }
   }
-
-  // In your ShopLoginCubit
-  Future<void> sendPasswordResetEmail(String email) async {
-    emit(ShopLoginLoadingState());
-    try {
-      await authRepo.sendPasswordResetEmail(email: email);
-      emit(ShopForgotPasswordSuccessState());
-    } catch (e) {
-      emit(ShopLoginErrorState(e.toString()));
-    }
-  }
 }
