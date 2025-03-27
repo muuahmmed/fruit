@@ -30,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _showForgotPasswordDialog(BuildContext context, ShopLoginCubit cubit) {
     final emailController = TextEditingController();
 
+    // Reset password dialog
     showDialog(
       context: context,
       builder: (context) {

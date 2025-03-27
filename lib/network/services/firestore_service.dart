@@ -1,15 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class FirestoreService implements DatabaseService{
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
-  @override
+abstract class DatabaseService {
   Future<void> addData({required String path, required Map<String, dynamic> data}) async {
-    await firestore.collection(path).add(data);
   }
 }
 
+class FirestoreService implements DatabaseService {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-abstract class DatabaseService {
-  Future<void> addData({required String path, required Map<String, dynamic> data});
-
+  @override
+  Future<void> addData({
+    required String path,
+    required Map<String, dynamic> data,
+  }) async {
+    try {
+      await _firestore.doc(path).set(data);
+    } catch (e) {
+      print('Error saving to Firestore: $e');
+      rethrow;
+    }
+  }
 }

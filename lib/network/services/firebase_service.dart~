@@ -107,4 +107,12 @@ class FirebaseAuthService {
       rethrow;
     }
   }
+  // In your FirebaseAuthService class
+  Future<void> sendPasswordResetEmail({required String email}) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

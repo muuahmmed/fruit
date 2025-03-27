@@ -4,6 +4,7 @@ import 'package:fruit/Login/LoginScreen.dart' show LoginScreen;
 import 'package:fruit/network/local/cache%20helper.dart' show CacheHelper;
 import 'package:fruit/network/services/firestore_service.dart' show DatabaseService, FirestoreService;
 import 'package:get_it/get_it.dart' show GetIt;
+
 import '../network/domain_layer/repos/auth_repo.dart';
 import '../network/services/firebase_service.dart';
 
@@ -61,7 +62,7 @@ Color chooseToastColor(ToastStates state) {
 void signOut(context) {
   CacheHelper.removeData(key: 'token').then((value) {
     if (value) {
-      navigateAndFinish(context, const LoginScreen());
+      navigateAndFinish(context, LoginScreen());
     }
   });
 }
