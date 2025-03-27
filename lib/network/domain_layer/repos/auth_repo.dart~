@@ -57,7 +57,6 @@ class AuthRepoImpl implements AuthRepo {
     required String password,
   }) async {
     try {
-
       final user = await firebaseAuthService.signInWithEmailAndPassword(
         email: email,
         password: password,
@@ -67,20 +66,11 @@ class AuthRepoImpl implements AuthRepo {
         throw InvalidCredentialsException();
       }
 
-      final userData = await databaseService.getData(
-        path: 'users/${user.uid}',
+      final userEntity = UserModel.fromFirebaseUser(
+        user,
+        name: user.displayName ?? '',
       );
-
-      if (userData == null) {
-        throw Exception('User not found in Firestore');
-      }
-
-      return UserModel(
-        uId: user.uid,
-        email: user.email ?? '',
-        name: userData['name'] ?? '',
-        createdAt: DateTime.parse(userData['createdAt'] ?? DateTime.now().toIso8601String()),
-      );
+      return userEntity;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'wrong-password' || e.code == 'user-not-found') {
         throw InvalidCredentialsException();
@@ -88,7 +78,6 @@ class AuthRepoImpl implements AuthRepo {
       throw AuthException(e.message ?? 'Authentication failed');
     }
   }
-
 
   @override
   Future<UserEntity> signInWithGoogle() async {

@@ -23,6 +23,17 @@ class UserModel extends UserEntity {
     );
   }
 
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      uId: map['uId'] ?? '',
+      email: map['email'] ?? '',
+      name: map['name'] ?? '',
+      createdAt: map['createdAt'] != null
+          ? DateTime.parse(map['createdAt'])
+          : DateTime.now(),
+    );
+  }
+
   @override
   Map<String, dynamic> toMap() {
     return {

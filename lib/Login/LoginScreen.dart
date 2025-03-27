@@ -472,9 +472,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         OutlinedButton(
                           onPressed:
                               () => {
-                                // context
-                                //     .read<ShopLoginCubit>()
-                                //     .signInWithFacebook(),
+                                context
+                                    .read<ShopLoginCubit>()
+                                    .signInWithFacebook(),
                               },
                           style: OutlinedButton.styleFrom(
                             foregroundColor: const Color(0xFF4267B2),
@@ -511,21 +511,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         // Apple Login
                         OutlinedButton(
-                          onPressed: () async {
-                            try {
-                              await context
-                                  .read<ShopLoginCubit>()
-                                  .signInWithGoogle();
-                              showToast(
-                                text: 'Google Sign-In successful',
-                                state: ToastStates.SUCCESS,
-                              );
-                            } catch (e) {
-                              showToast(
-                                text: 'Google Sign-In failed: ${e.toString()}',
-                                state: ToastStates.ERROR,
-                              );
-                            }
+                          onPressed: ()  {
+
                           },
                           style: OutlinedButton.styleFrom(
                             foregroundColor: Colors.black,
